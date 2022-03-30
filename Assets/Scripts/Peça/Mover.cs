@@ -6,7 +6,7 @@ public class Mover : MonoBehaviour
 {
     Vector3 screenPoint = new Vector3(); //pega posição do mouse
     Vector3 offset = new Vector3(); //distância da posição atual até onde o mouse está apontando
-
+    int id;
     public float xLimite, yLimite; //limites horizontal e vertical do nível
 
     private void OnMouseDown() //logo que o mouse é clicado
