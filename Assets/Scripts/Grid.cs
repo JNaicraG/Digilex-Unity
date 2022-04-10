@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,9 +6,9 @@ using UnityEngine;
 public class Grid : MonoBehaviour
 {
 
-    //Confirmar funcionamento e modificar código para uso
+    //Confirmar funcionamento e modificar cÃ³digo para uso
 
-    [Tooltip("Margem entre cada peça que será instanciada na grid (Mínimo 1.0)")]
+    [Tooltip("Margem entre cada peÃ§a que serÃ¡ instanciada na grid (MÃ­nimo 1.0)")]
     public float tileMargin;
 
     [Tooltip("Rows and cols for the map grid")]
@@ -20,7 +20,7 @@ public class Grid : MonoBehaviour
     /*
     TileMargin - margem entre cada bloco
     MyGrid - quantidade de linhas (X) e colunas (Y)
-    Tile Dimensions - escala dos blocos gerados em relação à eles mesmos. Deixar em 1.0.
+    Tile Dimensions - escala dos blocos gerados em relaÃ§Ã£o Ã  eles mesmos. Deixar em 1.0.
     */
 
     [Tooltip("Populate with all the prefabs used to generate map")]
@@ -29,49 +29,73 @@ public class Grid : MonoBehaviour
 
     // storing the map tiles in a list could be useful
     List<GameObject> mapList = new List<GameObject>();
-    //tava no código original, mas de fato, pode ser útil
+    //tava no cÃ³digo original, mas de fato, pode ser Ãºtil
 
 
     // Use this for initialization
     void Start()
     {
-        CreateMap();
-        //efeito tremilique do código original
+
+        Teste();
+        //CreateMap();
+        //efeito tremilique do cÃ³digo original
         //InvokeRepeating("FunkyTiles", 0f, 0.05f);
     }
 
-    void CenterPos(float largura) //centralizar ela na própria largura em dada posição
+    void CenterPos(float largura) //centralizar ela na prÃ³pria largura em dada posiÃ§Ã£o
     {
-        //Posição atual
+        //PosiÃ§Ã£o atual
         Vector3 lastPos = transform.position;
 
         //horizontal diminui em 1/4 da largura da grid
         lastPos.x -= largura/4;
-        //a horizontal, no caso, se refere à posição x do objeto no espaço
-        //porque /4 ? Não faço a mínima ideia(ou ao menos correta), mas funcionou
+        //a horizontal, no caso, se refere Ã  posiÃ§Ã£o x do objeto no espaÃ§o
+        //porque /4 ? NÃ£o faÃ§o a mÃ­nima ideia(ou ao menos correta), mas funcionou
 
-        //Muda posição atual pra nova, centralizada nele mesmo
+        //Muda posiÃ§Ã£o atual pra nova, centralizada nele mesmo
         transform.position = lastPos;
         //print("Largura medida: " + largura); //teste
     }
-    
-    void CreateMap() //Criar grid com blocos
+
+    void Teste()
+    {
+        //Nï¿½o pode usar letra maiï¿½scula
+        Syllable syl = new Syllable();
+        ArrayList palavra = new ArrayList();
+        palavra = syl.word2syllables("Hiato".ToLower());
+        int x = palavra.Count;
+        Debug.Log("tamanho do vet: " + x);
+        myGrid.x = x;
+        foreach (var n in palavra)
+        {
+            Debug.Log("Sï¿½laba: " + n.ToString());
+        }
+        CreateMap(palavra);
+    }
+
+    void CreateMap(ArrayList pal) //Criar grid com blocos
     {
         float largura = 0.0f;
         for (int row = 1; row <= myGrid.y; row++) //coluna (no nosso caso 1, mas vai que)
-            for (int col = 1; col <= myGrid.x; col++) // para cada linha até o número delimitado de linhas
+            for (int col = 1; col <= myGrid.x; col++) // para cada linha atÃ© o nÃºmero delimitado de linhas
             {
                 {
-                // choose a random prefab tile
-                int n = Random.Range(0, prefabTiles.Length); //nesse caso, como só tem o bloco de resposta, só vai puxar ele
+                    //teste de gerar sÃ­laba no bloco
+                    string sil = pal[col - 1].ToString();
+                    Debug.Log("Teste " + col + " silaba: " + sil);
+
+                    // choose a random prefab tile
+                    int n = Random.Range(0, prefabTiles.Length); //nesse caso, como sÃ³ tem o bloco de resposta, sÃ³ vai puxar ele
                 GameObject thePrefab = prefabTiles[n];
-                //Inclusive, esse código só vai usar um único prefab, mudar para não ser lista depois, só GameObject thePrefab; e tirar esse código
+                //Inclusive, esse cÃ³digo sÃ³ vai usar um Ãºnico prefab, mudar para nÃ£o ser lista depois, sÃ³ GameObject thePrefab; e tirar esse cÃ³digo
 
                 // spawns the tile/bloco
-                GameObject theTile = Instantiate(thePrefab, transform); //o piso vai ser o bloco ///dá pra encurtar as últimas 3 linhas de código, inclusive, já que vai ser só o bloco
-                theTile.name = "Tile_" + col + "_" + row; //nome do bloco gerado que será vvísivel no inspetor //pode ser substituído pelo id do bloco...nah
+                GameObject theTile = Instantiate(thePrefab, transform); //o piso vai ser o bloco ///dÃ¡ pra encurtar as Ãºltimas 3 linhas de cÃ³digo, inclusive, jÃ¡ que vai ser sÃ³ o bloco
+                    theTile.GetComponent<PeÃ§a>().id = col; //dÃ¡ id
+                    theTile.GetComponent<PeÃ§a>().sil = pal[col - 1].ToString(); //dÃ¡ sÃ­laba a ser mostrada
+                    theTile.name = "Tile_" + col + "_" + row; //nome do bloco gerado que serÃ¡ vvÃ­sivel no inspetor //pode ser substituÃ­do pelo id do bloco...nah
                 theTile.transform.localPosition = new Vector3((col - 1) * tileDimensions.x * tileMargin, 0f, (row - 1) * tileDimensions.z);
-                    //A posição do bloco local (em relação ao pai no inspetor) = (x,y,z) -> ((coluna atual) * largura do bloco * margem, linha * altura do bloco, o z não faz diferença, sinceramente)
+                    //A posiÃ§Ã£o do bloco local (em relaÃ§Ã£o ao pai no inspetor) = (x,y,z) -> ((coluna atual) * largura do bloco * margem, linha * altura do bloco, o z nÃ£o faz diferenÃ§a, sinceramente)
 
                     
                     
@@ -82,7 +106,7 @@ public class Grid : MonoBehaviour
         print(mapList.Count + " tiles in the map"); //confirmar se gerou a quantia correta
 
         //centralizar
-        largura = (tileDimensions.x + tileMargin) * myGrid.x; //largura vai ser (tamanho.x + margem) * número de linhas
+        largura = (tileDimensions.x + tileMargin) * myGrid.x; //largura vai ser (tamanho.x + margem) * nÃºmero de linhas
         if (largura != 0) //vai que
             CenterPos(largura);
     }
@@ -99,22 +123,22 @@ public class Grid : MonoBehaviour
         theTile.transform.localPosition = temp;
     }
     
-    //eu posso só usar uma referência de posição e ir pra lá direto né
+    //eu posso sÃ³ usar uma referÃªncia de posiÃ§Ã£o e ir pra lÃ¡ direto nÃ©
     /*
-    void CenterPos() //tentar centralizar a grid criada em relação ao próprio tamanho com a posição dela no espaço
+    void CenterPos() //tentar centralizar a grid criada em relaÃ§Ã£o ao prÃ³prio tamanho com a posiÃ§Ã£o dela no espaÃ§o
     {
-        //largura do grid vai ser igual à largura do bloco de resposta
+        //largura do grid vai ser igual Ã  largura do bloco de resposta
         float largura = prefabTiles[0].transform.localScale.x;
 
         //multiplicado pela quantidade de blocos
         largura *= myGrid.x;
         /* camera.main.ScreenToWorldPoint -> pega um ponto saindo da camera em (x,y,z)
-         * Screen.Width/2 e Screen.height/2 pega o ponto central da camera (também poderia ser (0.5f , 0.5f, -----) no lugar
-         * -largura ao quadrado me deu a metade para 10, mas tá errado
+         * Screen.Width/2 e Screen.height/2 pega o ponto central da camera (tambÃ©m poderia ser (0.5f , 0.5f, -----) no lugar
+         * -largura ao quadrado me deu a metade para 10, mas tÃ¡ errado
          *
         Vector3 centerPos = Camera.main.ScreenToWorldPoint(new Vector3((Screen.width / 2) - (largura * largura), Screen.height / 2, Camera.main.nearClipPlane));
 
-        //virar a posição para a centralizada
+        //virar a posiÃ§Ã£o para a centralizada
         transform.position = centerPos;
 
         ///////////IGNORAR///////////
@@ -124,9 +148,9 @@ public class Grid : MonoBehaviour
         //escala do emptyobj -> tamanho
         //Vector3 objectSize = transform.localScale; //Vector3.Scale(transform.localScale, GetComponent().mesh.bounds.size);
 
-        //posição dele com deslocamento no eixo x referente a metade do próprio tamanho, para centralizar
+        //posiÃ§Ã£o dele com deslocamento no eixo x referente a metade do prÃ³prio tamanho, para centralizar
         //Vector3 centerPos = Camera.main.ScreenToWorldPoint(new Vector3((Screen.width / 2) - (objectSize.x / 2), Screen.height / 2, Camera.main.nearClipPlane));
 
-        //alterar a posição do gameobj atual para a centralizada
+        //alterar a posiÃ§Ã£o do gameobj atual para a centralizada
    // } */
 }
