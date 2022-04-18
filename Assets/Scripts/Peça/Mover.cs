@@ -6,9 +6,12 @@ public class Mover : MonoBehaviour
 {
     Vector3 screenPoint = new Vector3(); //pega posição do mouse
     Vector3 offset = new Vector3(); //distância da posição atual até onde o mouse está apontando
-    int id;
     public float xLimite, yLimite; //limites horizontal e vertical do nível
-
+    private float _boundaries;
+    private void Start()
+    {
+         _boundaries = Camera.main.orthographicSize - 1;// -1 para manter a peça dentro do jogo, tem que ser no minimo 1
+    }
     private void OnMouseDown() //logo que o mouse é clicado
     {
         /*
@@ -29,8 +32,8 @@ public class Mover : MonoBehaviour
         Vector3 curScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z); //nova posição do mouse
         Vector3 curPosition = Camera.main.ScreenToWorldPoint(curScreenPoint) + offset; //posição que a peça terá de mover -> em relação à câmera + até o mouse
         
-        curPosition.x = Mathf.Clamp(curPosition.x, -xLimite, xLimite); //pos horizontal
-        curPosition.y = Mathf.Clamp(curPosition.y, -yLimite, yLimite); //pos vertical
+        curPosition.x = Mathf.Clamp(curPosition.x, -_boundaries, _boundaries); //pos horizontal
+        curPosition.y = Mathf.Clamp(curPosition.y, -_boundaries, _boundaries); //pos vertical
         //não precisa necessariamente separar em x e y, eu só achei mais fácil pra escrever e ler
         //Mathf.Clamp vai limitar a posição da peça entre os limites estabelecidos -> se a nova posição for fora dos limites, segura ela nestes limites estabelecidos
         
