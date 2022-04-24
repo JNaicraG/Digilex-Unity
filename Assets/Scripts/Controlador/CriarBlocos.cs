@@ -103,7 +103,7 @@ public class CriarBlocos : MonoBehaviour
                     theTile.transform.parent = r.transform;
                     theTile.GetComponent<BlocoResposta>().id = col; //dá id
                     theTile.GetComponent<BlocoResposta>().sil = silabas[col - 1].ToString(); //dá sílaba a ser mostrada
-                    theTile.GetComponent<BlocoResposta>().AlterarTexto();
+                    theTile.GetComponent<BlocoResposta>().AlterarTexto(); //lembrete que isso ta aqui para teste, depois retirar.
                     theTile.name = "Resp_" + col + "_";// + row; //nome do bloco gerado que será vvísivel no inspetor //pode ser substituído pelo id do bloco...nah           
                 /*
                     entao, como cada resposta gerada sera dado um offset horizontal da posiçao inicial do empty de respostas, PARA CENTRALIZAR
@@ -124,7 +124,7 @@ public class CriarBlocos : MonoBehaviour
         //print(mapList.Count + " tiles in the map"); //confirmar se gerou a quantia correta
 
         //centralizar
-        float largura = (tileDimensions.x + tileMargin/2) * _myGrid; //largura vai ser (tamanho.x + margem) * número de linhas
+        float largura = (tileDimensions.x + tileMargin) * _myGrid; //largura vai ser (tamanho.x + margem) * número de linhas
         largura = tileMargin*2;
         if (largura != 0) //confirmando se n foi criado uma grid nula
             CenterPos(largura);

@@ -36,8 +36,8 @@ public class Mover : MonoBehaviour
         curPosition.y = Mathf.Clamp(curPosition.y, -_boundaries, _boundaries); //pos vertical
         //não precisa necessariamente separar em x e y, eu só achei mais fácil pra escrever e ler
         //Mathf.Clamp vai limitar a posição da peça entre os limites estabelecidos -> se a nova posição for fora dos limites, segura ela nestes limites estabelecidos
-        
-        transform.position = curPosition; //finalmente, a posição atual da peça será movida para a posição calculada
+        if(!ControladorJogo.Instance.JogoPausado)
+            transform.position = curPosition; //finalmente, a posição atual da peça será movida para a posição calculada
     }
 
 

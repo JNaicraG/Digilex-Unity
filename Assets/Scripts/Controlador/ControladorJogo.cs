@@ -35,6 +35,8 @@ public class ControladorJogo : MonoBehaviour
     //
     //Começa aqui//
 
+
+    //Variaveis//
     [Tooltip("Caminho que a lista de palavras a ser utilizada está")]
     public string loadWordListPath;
     private List<string> _listaPalavras = new List<string>();
@@ -64,7 +66,6 @@ public class ControladorJogo : MonoBehaviour
         }
     }
 
-
     private int _nSilabas = 0; //numero de silabas
     public int nSilabas
     {
@@ -74,12 +75,22 @@ public class ControladorJogo : MonoBehaviour
         }
         set { }
     }
+
+    private bool _jogoPausado = false;
+    public bool JogoPausado { get => _jogoPausado; set => _jogoPausado = value; }
+
+
+
+    //Void Start//
     private void Start()
     {
         CarregarPalavras();
 
     }
 
+
+
+    //Funçoes//
 
     private void CarregarPalavras() {
         var stream = new StreamReader(loadWordListPath);
