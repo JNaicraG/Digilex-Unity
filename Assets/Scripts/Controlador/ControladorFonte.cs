@@ -11,6 +11,12 @@ public class ControladorFonte : MonoBehaviour
         SetTamanhoInicial();
     }
 
+    private bool _fonteAlterada = false;
+    public bool FonteAlterada { get => _fonteAlterada; set => _fonteAlterada = value; }
+
+    private int _indexMudança = 0;
+    public int IndexMudança { get => _indexMudança; set => _indexMudança = value; }
+
     private int _fonteTamanho;
     public int FonteTamanho { get => _fonteTamanho; set => _fonteTamanho = value; }
     private int _topico,_texto,_titulo,_botao, _peça;

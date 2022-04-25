@@ -3638,7 +3638,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u200B"
+  m_text: "Nome Atual\u200B"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4603,7 +4603,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1244304442}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
@@ -5433,7 +5433,19 @@ MonoBehaviour:
   m_CharacterLimit: 0
   m_OnEndEdit:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2146308565}
+        m_TargetAssemblyTypeName: Inicio, Assembly-CSharp
+        m_MethodName: SetNomeJogador
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_OnSubmit:
     m_PersistentCalls:
       m_Calls: []
@@ -5458,7 +5470,7 @@ MonoBehaviour:
   m_CaretColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
   m_CustomCaretColor: 0
   m_SelectionColor: {r: 0.65882355, g: 0.80784315, b: 1, a: 0.7529412}
-  m_Text: 
+  m_Text: Nome Atual
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
@@ -7441,9 +7453,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 332ae3d089f831d4881a3da859e0a981, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  texto:
+  - {fileID: 2114806458}
+  - {fileID: 1812864516}
+  - {fileID: 1165416644}
+  - {fileID: 1237627020}
+  topico:
+  - {fileID: 542668614}
+  - {fileID: 1092739937}
+  - {fileID: 615704566}
+  - {fileID: 163740414}
+  voltarTexto: {fileID: 261981356}
   menuInicial: {fileID: 1148094820}
   menuConfig: {fileID: 2140009918}
   menuPontos: {fileID: 1423588517}
-  qualidade: {fileID: 0}
-  fonteTam: {fileID: 0}
+  qualidade: {fileID: 1934352705}
+  fonteTam: {fileID: 1055594636}
+  volume: {fileID: 496642837}
   audioMixer: {fileID: 24100000, guid: f9e39647cf373ef43898b4fe3e91650c, type: 2}

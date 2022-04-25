@@ -5,10 +5,10 @@ using UnityEngine;
 public class ConfiguracaoBean
 {
     public string nomeJogador;
-    public int volume, tamFonte, qualidadeIndex;
-
+    public int tamFonte, qualidadeIndex;
+    public float volume;
     public ConfiguracaoBean(){}
-    public ConfiguracaoBean(string nomeJogador, int volume, int tamFonte, int qualidadeIndex){
+    public ConfiguracaoBean(string nomeJogador, float volume, int tamFonte, int qualidadeIndex){
         this.nomeJogador = nomeJogador;
         this.volume = volume;
         this.tamFonte = tamFonte;
