@@ -8,7 +8,9 @@ public class Inicio : MonoBehaviour
 {
     public GameObject menuInicial, menuConfig, menuPontos;
     public Dropdown qualidade, fonteTam;
+    public Slider volume;
     public AudioMixer audioMixer;
+    
     public void Config()
     {
         menuInicial.SetActive(false);
@@ -44,10 +46,35 @@ public class Inicio : MonoBehaviour
     {
         QualitySettings.SetQualityLevel(indexQualidade);
     }
+    public void SetFonte(int tamanho)
+    {
+        ControladorFonte.Instance.FonteTamanho = tamanho;
+    }
 
+    //Start
     private void Start()
+    {
+        CarregarQualidadeDropDown();
+        CarregarVolume();
+        CarregarTamanhoDropdown();
+    }
+
+    private void CarregarQualidadeDropDown()
     {
         qualidade.value = QualitySettings.GetQualityLevel();
         qualidade.RefreshShownValue();
+    }
+
+    private void CarregarVolume()
+    {
+        float a = 0;
+        audioMixer.GetFloat("volume",out a);
+        volume.value = a;
+    }
+
+    private void CarregarTamanhoDropdown()
+    {
+        fonteTam.value = ControladorFonte.Instance.FonteTamanho;
+        fonteTam.RefreshShownValue();
     }
 }

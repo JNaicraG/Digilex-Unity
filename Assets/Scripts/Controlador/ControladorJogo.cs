@@ -5,37 +5,7 @@ using System.IO;
 using System.Linq;
 public class ControladorJogo : MonoBehaviour
 {
-    //Singleton 
-    //Favor ignorar
-    private static ControladorJogo _instance;
-    public static ControladorJogo Instance {
-        get
-        {
-            if (_instance == null)
-            {
-                _instance = FindObjectOfType(typeof(ControladorJogo)) as ControladorJogo;
-                //Debug.LogError("ControladorJogo é Null / não existe");
-            }
-            return _instance;
-        }
-        private set { }
-    }
-    private void Awake()
-    {
-        // Deletar instancia desse script que nao seja ele mesmo (evitar duplicatas)
-        if (Instance != null && Instance != this)
-        {
-            Destroy(this);
-        }
-        else
-        {
-            Instance = this;
-        }
-    }
-    //
-    //Começa aqui//
-
-
+    
     //Variaveis//
     [Tooltip("Caminho que a lista de palavras a ser utilizada está")]
     public string loadWordListPath;
@@ -79,8 +49,6 @@ public class ControladorJogo : MonoBehaviour
     private bool _jogoPausado = false;
     public bool JogoPausado { get => _jogoPausado; set => _jogoPausado = value; }
 
-
-
     //Void Start//
     private void Start()
     {
@@ -120,5 +88,38 @@ public class ControladorJogo : MonoBehaviour
         else
             Debug.Log("Palavra Chave ainda nao foi escolhida");
     }
+
+
+
+
+    //Singleton 
+    //Favor ignorar
+    private static ControladorJogo _instance;
+    public static ControladorJogo Instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = FindObjectOfType(typeof(ControladorJogo)) as ControladorJogo;
+                //Debug.LogError("ControladorJogo é Null / não existe");
+            }
+            return _instance;
+        }
+        private set { }
+    }
+    private void Awake()
+    {
+        // Deletar instancia desse script que nao seja ele mesmo (evitar duplicatas)
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            Instance = this;
+        }
+    }
+    //
 
 }
