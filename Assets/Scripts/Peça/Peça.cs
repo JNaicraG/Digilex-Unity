@@ -10,7 +10,7 @@ public class Peça : MonoBehaviour
     [Tooltip("Sílaba que será exibida")]
     public string sil;
     [Tooltip("O texto da própria peça (Text TMP)")]
-    public TextMeshProUGUI textMP;
+    public TextMeshPro textMP;
     // Start is called before the first frame update
     public void AlterarTexto()
     {

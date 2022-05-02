@@ -36,10 +36,10 @@ public class CriarBlocos : MonoBehaviour
     //As peças
 
     // storing the map tiles in a list could be useful
-    List<GameObject> respList = new List<GameObject>();
+    public static List<GameObject> respList = new List<GameObject>();
 
     // storing the map tiles in a list could be useful
-    List<GameObject> peçaList = new List<GameObject>();
+    public static List<GameObject> peçaList = new List<GameObject>();
 
 
     // Use this for initialization
@@ -86,7 +86,7 @@ public class CriarBlocos : MonoBehaviour
     }
  
     //(ArrayList pal)
-    void SpawnResposta() //Criar grid com blocos
+    private void SpawnResposta() //Criar grid com blocos
     {
         //configuraç~~oes da grid
         ArrayList silabas = new ArrayList(); //Lista de silabas que sera carregada
@@ -119,7 +119,7 @@ public class CriarBlocos : MonoBehaviour
 
                 // stores the tile in the List
                 respList.Add(theTile);
-            }
+            } 
         }
         //print(mapList.Count + " tiles in the map"); //confirmar se gerou a quantia correta
 

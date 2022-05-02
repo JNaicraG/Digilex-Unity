@@ -5,7 +5,14 @@ using System.IO;
 using System.Linq;
 public class ControladorJogo : MonoBehaviour
 {
-    
+    //private List<GameObject> _blocosResp = new List<GameObject>();
+    //public List<GameObject> BlocoResp { get =>_blocosResp; }
+    //public GameObject blocoResp;
+    public bool _continuarJogo = false;
+    public bool ContinuarJogo { get => _respostasCorretas; set => _respostasCorretas = value; }
+    public GameObject menuContinuar;
+    private bool _respostasCorretas = false;
+    public bool RespostasCorretas { get => _respostasCorretas; set => _respostasCorretas = value; }
     //Variaveis//
     [Tooltip("Caminho que a lista de palavras a ser utilizada está")]
     public string loadWordListPath;
@@ -56,9 +63,41 @@ public class ControladorJogo : MonoBehaviour
 
     }
 
+    private void Update()
+    {
+        ConfirmarRespostas();
+    }
 
 
     //Funçoes//
+    private void JogoAcabou()
+    {
+        if (!_continuarJogo)
+        {
+            //salvar score atual
+            //voltar ao menu inicial
+            Debug.Log("JOGO ACABOU");
+        }
+    }
+    private void ConfirmarRespostas()
+    {
+        List<GameObject> blocos = CriarBlocos.respList; //lista de blocos respostas existentes
+        int tam = blocos.Count; //tamanho da lista / quantas silabas tem
+        int corretos = 0; //numero de peças posicionadas corretamente
+        foreach (var n in blocos) //para cada bloco
+        {
+            if (n.GetComponent<BlocoResposta>().BlocoCorreto) //verificar se resposta e peça batem
+                corretos++; //adiciona como correto
+        }
+        if (corretos == tam) //se bater o numero de respostas corretas com blocos existentes
+        {
+            _jogoPausado = true;
+            menuContinuar.SetActive(true);
+        }
+        //_respostasCorretas = true; //acabar o jogo
+    }
+
+
 
     private void CarregarPalavras() {
         var stream = new StreamReader(loadWordListPath);
@@ -67,7 +106,7 @@ public class ControladorJogo : MonoBehaviour
         EscolherPalavra();
     }
 
-    private void EscolherPalavra()
+    public void EscolherPalavra()
     {
         int nMax = _listaPalavras.Count;
         _palavraChave = _listaPalavras[Random.Range(0, nMax)];
