@@ -29,8 +29,10 @@ public class BlocoResposta : MonoBehaviour
             Debug.Log("Silaba vazia, nao pode ser usada para gerar Bloco de Resposta");
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
+    // void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
+    {     
+        Debug.Log("Objeto entrou com nome: " + collision.gameObject.name.ToString());
         if (collision.gameObject.CompareTag("Peça")) //se o objeto que entrou atualmente no bloco for do tipo PEÇA
         {
             GameObject obj = collision.gameObject;
@@ -40,10 +42,23 @@ public class BlocoResposta : MonoBehaviour
                 Debug.Log("Silaba Bloco: " + sil);
                 Debug.Log("Silaba Peça: " + obj.GetComponent<Peça>().sil);
                 _blocoCorreto = true; //bloco/peça correto
-                obj.transform.position = Vector3.Lerp(obj.transform.position, transform.position, tempoLerp); //a posiçao dele se torna a deste bloco
+                obj.transform.position = Vector3.Lerp(obj.transform.position, transform.position, Time.deltaTime); //a posiçao dele se torna a deste bloco
             }
             else
                 _blocoCorreto = false;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Peça")) //se o objeto que entrou atualmente no bloco for do tipo PEÇA
+        {
+            GameObject obj = collision.gameObject;
+            if (obj.GetComponent<Peça>().id == id) //se o id/silaba for correto
+            {
+               // if (_blocoCorreto)
+                    _blocoCorreto = false;
+            }
         }
     }
 }

@@ -94,6 +94,7 @@ public class ControladorJogo : MonoBehaviour
             _jogoPausado = true;
             menuContinuar.SetActive(true);
         }
+        corretos = 0;
         //_respostasCorretas = true; //acabar o jogo
     }
 
