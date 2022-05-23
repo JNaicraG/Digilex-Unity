@@ -10,25 +10,24 @@ public class MenuContinuar : MonoBehaviour
     {
         Time.timeScale = 1;
         //Destroi os objetos existentes
-        Debug.Log("ENTRAMOS NO BOTÃO SIM");
-        foreach(var n in CriarBlocos.peçaList)
+        Debug.Log("ENTRAMOS NO BOTÃƒO SIM");
+        foreach(var n in CriarBlocos.peÃ§aList)
         {
-            Debug.Log("DESTRÓI PEÇA");
+            Debug.Log("DESTRÃ“I PEÃ‡A");
             Destroy(n);
         }
         foreach (var n in CriarBlocos.respList)
         {
-            Debug.Log("DESTRÓI Resposta");
+            Debug.Log("DESTRÃ“I Resposta");
             Destroy(n);
         }
-        Debug.Log("Saímos dos loops");
+        Debug.Log("SaÃ­mos dos loops");
         //limpa os objetos atuais das listas
         CriarBlocos.respList.Clear();
-        CriarBlocos.peçaList.Clear();
+        CriarBlocos.peÃ§aList.Clear();
         Debug.Log("Limpado as listas");
-
         menuContinuar.SetActive(false);
-        Debug.Log("MENU, PORQUE VOCÊ NAO MORREU??????");
+        Debug.Log("MENU, PORQUE VOCÃŠ NAO MORREU??????");
         //reescolhe palavra chave
         ControladorJogo.Instance.EscolherPalavra();
         ControladorJogo.Instance.ContinuarJogo = true;

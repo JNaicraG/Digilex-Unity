@@ -53,6 +53,7 @@ public class CriarBlocos : MonoBehaviour
     }
 
     //acho que nao vou mais usar o CenterPos(), mas fica aqui por enquanto
+
     void CenterPos(float largura) //centralizar ela na própria largura em dada posição
     {
         /*

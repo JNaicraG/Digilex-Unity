@@ -65,7 +65,8 @@ public class ControladorJogo : MonoBehaviour
 
     private void Update()
     {
-        ConfirmarRespostas();
+        if(CriarBlocos.respList.Count != 0)
+            ConfirmarRespostas();
     }
 
 
@@ -84,14 +85,16 @@ public class ControladorJogo : MonoBehaviour
         List<GameObject> blocos = CriarBlocos.respList; //lista de blocos respostas existentes
         int tam = blocos.Count; //tamanho da lista / quantas silabas tem
         int corretos = 0; //numero de peças posicionadas corretamente
-        foreach (var n in blocos) //para cada bloco
-        {
-            if (n.GetComponent<BlocoResposta>().BlocoCorreto) //verificar se resposta e peça batem
-                corretos++; //adiciona como correto
-        }
+        if(blocos.Count != 0)
+            foreach (var n in blocos) //para cada bloco
+            {
+                if (n.GetComponent<BlocoResposta>().BlocoCorreto) //verificar se resposta e peça batem
+                    corretos++; //adiciona como correto
+            }
         if (corretos == tam) //se bater o numero de respostas corretas com blocos existentes
         {
             _jogoPausado = true;
+            Time.timeScale = 0;
             menuContinuar.SetActive(true);
         }
         corretos = 0;
